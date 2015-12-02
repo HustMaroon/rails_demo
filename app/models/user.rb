@@ -2,12 +2,12 @@ class User < ActiveRecord::Base
 	attr_accessor :remember_token
 	before_save {email.downcase!}
 	has_many :micoposts
-	validates :name, presence: true, length: {maximum: 10}
+	validates :name, presence: true, length: {maximum: 100}
 	MAIL_VALID = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true, format: {with: MAIL_VALID},
 	uniqueness: {case_sensitive: false}
 	has_secure_password
-	validates :password, presence: true, length: {minimum: 6}
+	validates :password, presence: true, length: {minimum: 1}, allow_nil: true
 
 	def User.digest(string)
 		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
