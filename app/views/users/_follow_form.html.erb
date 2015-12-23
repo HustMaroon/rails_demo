@@ -1,0 +1,8 @@
+
+<% if current_user.active_relationships.find_by(followed_id: @user.id) %>
+ <div id="follow_form">
+  <%= render 'unfollow' %>
+ <% else %>
+  <%= render 'follow' %>
+  <%end%>
+  </div>
