@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   get 'signup' => 'users#new'
 
-  resources :microposts
+  resources :posts, only: [:create, :destroy]
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
