@@ -11,7 +11,8 @@ User.create!(name: "Example",
 	password_confirmation: "thanhbk",
 	admin: true,
 	activated: true,
-	activated_at: Time.zone.now
+	activated_at: Time.zone.now,
+	age: 18
 	)
 99.times do |n|
 	name = Faker::Name.name
@@ -22,7 +23,8 @@ User.create!(name: "Example",
 		password: password,
 		password_confirmation: password,
 		activated: true,
-		activated_at: Time.zone.now)
+		activated_at: Time.zone.now,
+		age: n+1)
 end
 users = User.order(:created_at).take(6)
 50.times do

@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
 	                                 foreign_key: "followed_id"
 	has_many :followers, through: :passive_relationships, source: :follower
 
-
+	validates :age, numericality: {greater_than_or_equal_to:0, only_integer:true}
+    after_create :logging
 	def downcase_email
 		self.email = email.downcase
 	end
@@ -91,5 +92,10 @@ class User < ActiveRecord::Base
 
 	def following?(other_user)
 		following.include?(other_user)
+	end
+	private
+
+	def logging
+		logger.debug"debug"
 	end
 end
